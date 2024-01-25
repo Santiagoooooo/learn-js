@@ -1,16 +1,18 @@
 <html>
     <head>
         <script>
-            // Fix all errors in the code below
             const PI = 3.14159;
+            let area; // Declare area outside the block to make it accessible
+        
             {
                 let radius = 5;
-                let area = PI * radius * radius;
-                PI = 3.0;
+                area = PI * radius * radius;
+                // Do not change the value of PI since it's a constant
             }
-            console.log(area);
-
+        
+            console.log(area); // Now area is accessible here
         </script>
+        
     </head>
     <body>
         <h1> A Web Page </h1>
