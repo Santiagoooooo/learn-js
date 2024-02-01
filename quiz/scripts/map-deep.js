@@ -6,8 +6,9 @@ const originalMatrix = [
   ];
   
   const newMatrix = originalMatrix.map((row) => {
-    return row.sort();
-  });
+    return [...row].sort((a, b) => a - b); // Using the spread operator to create a deep copy
+});
+
   
   // Modifying the original matrix (changing the last element of the first row)
   originalMatrix[0][2] = 99;

@@ -8,7 +8,6 @@ class PStack {
   showId() {
     return this.#id;
   }
-
 }
 
 class PStackImpl extends PStack {
@@ -16,18 +15,32 @@ class PStackImpl extends PStack {
     super();
   }
 
+  // Getter for persons property
+  get persons() {
+    return this._persons;
+  }
+
+  // Setter for persons property
+  set persons(personsArray) {
+    this._persons = personsArray;
+  }
+
   push(p) {
-    return this._persons.push(p)
+    return this._persons.push(p);
   }
 
   pop() {
-    return this._persons.pop().age
+    if (this._persons.length > 0) {
+      return this._persons.pop().age;
+    }
+    // Handle case when _persons is empty
+    return null;
   }
 }
 
 let pstack = new PStackImpl();
-pstack.persons = [{name: 'Jojo', age: 21}, {name: 'Gabi', age: 29}]
+pstack.persons = [{name: 'Jojo', age: 21}, {name: 'Gabi', age: 29}];
 pstack.push({name: 'Dein', age: 19});
-console.log(pstack.pop());
-console.log(pstack.pop());
-console.log(pstack.persons);
+console.log(pstack.pop()); // Should log 19 (age of 'Dein')
+console.log(pstack.pop()); // Should log 29 (age of 'Gabi')
+console.log(pstack.persons); // Should log [{name: 'Jojo', age: 21}]
