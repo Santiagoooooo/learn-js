@@ -1,14 +1,23 @@
 class PStack {
   #id;
+  #persons;
+
   constructor() {
     this.#id = 1;
-    this._persons = [];
+    this.#persons = []; 
   }
 
   showId() {
     return this.#id;
   }
 
+  get persons() {
+    return this.#persons;
+  }
+
+  set persons(newPersons) {
+    this.#persons = newPersons;
+  }
 }
 
 class PStackImpl extends PStack {
@@ -17,17 +26,26 @@ class PStackImpl extends PStack {
   }
 
   push(p) {
-    return this._persons.push(p)
+    let persons = this.persons;
+    persons.push(p);
+    this.persons = persons;
+    return persons.length;
   }
 
   pop() {
-    return this._persons.pop().age
+    let persons = this.persons;
+    if (persons.length > 0) {
+      let person = persons.pop();
+      this.persons = persons;
+      return person.age;
+    }
+    return undefined; 
   }
 }
 
 let pstack = new PStackImpl();
-pstack.persons = [{name: 'Jojo', age: 21}, {name: 'Gabi', age: 29}]
+pstack.persons = [{name: 'Jojo', age: 21}, {name: 'Gabi', age: 29}];
 pstack.push({name: 'Dein', age: 19});
-console.log(pstack.pop());
-console.log(pstack.pop());
+console.log(pstack.pop()); 
+console.log(pstack.pop()); 
 console.log(pstack.persons);
